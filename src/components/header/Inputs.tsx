@@ -3,7 +3,7 @@ import { addProduct } from 'app/shopSlice'
 import React, { useState } from 'react'
 import { Product, Shop } from 'types'
 import { v4 as uuidv4 } from 'uuid'
-
+import styles from './Inputs.module.scss'
 type Props = {
   shops: Shop[]
 }
@@ -21,7 +21,6 @@ const Inputs = ({ shops }: Props) => {
   }
 
   const handleSubmit = () => {
-    // Handle form submission with inputValue and selectedShop
     if (selectedShop && productName) {
       const selectedShopOrder = shops.find((shop) => shop.name === selectedShop)
       const newProduct: Product = {
@@ -35,24 +34,34 @@ const Inputs = ({ shops }: Props) => {
   }
 
   return (
-    <div className="form-row">
+    <div className={styles.inputsContainer}>
       <input
+        className={styles.textInput}
         type="text"
-        placeholder="Enter text"
+        placeholder="Name"
         value={productName}
         onChange={handleInputChange}
       />
-      <select value={selectedShop} onChange={handleSelectChange}>
+      <select
+        className={styles.textInput}
+        data-testid="shopInput"
+        value={selectedShop}
+        onChange={handleSelectChange}
+      >
         <option value="" disabled>
           Select an option
         </option>
-        {shops.map((shop) => (
-          <option value={shop.name} key={shop.id}>
-            {shop.name}
-          </option>
-        ))}
+        {shops &&
+          shops.map((shop) => (
+            <option value={shop.name} key={shop.id}>
+              {shop.name}
+            </option>
+          ))}
       </select>
-      <button onClick={handleSubmit}>Enter</button>
+
+      <button className={styles.enterBtn} onClick={handleSubmit}>
+        Add
+      </button>
     </div>
   )
 }

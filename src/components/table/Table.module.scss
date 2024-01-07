@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+tr{
+
+}
+.table{
+    width: 100%;
+}
+
+.row{
+    display: flex;
+}
+
+.col1{
+    width: 50%;
+}
+
+.col2{
+    width: 30%;
+}
+
+.col3{
+    width: 25%;
+    color:$red;
+    font-weight: 500;
+}

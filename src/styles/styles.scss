@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
+@import 'variables';
+
+body{
+    font-family:$font-fam;
+    font-weight: 400;
+    color: $dark-blue;
+   
+}
+
+.title{
+    font-size: $bg-font;
+    font-weight: 500;
+}

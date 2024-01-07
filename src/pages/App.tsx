@@ -4,19 +4,16 @@ import Title from 'components/Title'
 import Inputs from 'components/header/Inputs'
 import Table from 'components/table/Table'
 import { useEffect } from 'react'
-
+import '../styles/styles.scss'
 function App() {
-  const { shops, error, status, products } = useAppSelector(
-    (state) => state.shops
-  )
+  const { shops, status, products } = useAppSelector((state) => state.shops)
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchShops())
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
-      <p>{status}</p>
       <Title />
       <Inputs shops={shops} />
       <Table products={products} />

@@ -1,9 +1,12 @@
 import React from 'react'
+import styles from './Title.module.scss'
 
-type Props = {}
-
-const Title = (props: Props) => {
-  return <div>Add to cart:</div>
+const Title = () => {
+  return (
+    <div className={styles.titleContainer}>
+      <p className={styles.title}>Add to cart:</p>
+    </div>
+  )
 }
 
 export default Title

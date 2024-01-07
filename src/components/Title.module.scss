@@ -1,0 +1,11 @@
+@import "../styles/variables.scss";
+
+.titleContainer {
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+.title {
+    font-size: $bg-font;
+    font-weight: 500;
+}

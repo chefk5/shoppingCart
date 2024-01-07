@@ -17,10 +17,9 @@ const initialState: ShopState = {
   products: []
 }
 
-export const fetchShops = createAsyncThunk('shop/fetchShops', async () => {
+export const fetchShops = createAsyncThunk('shops/fetchShops', async () => {
   try {
     const shops: Shop[] = await getShops()
-    console.log('🚀 ~ file: shopSlice.ts:21 ~ fetchShops ~ shops:', shops)
     return shops
   } catch (error) {
     console.error('error in shopslice>fetchShops: ', error)
