@@ -62,18 +62,15 @@ test('Products are shown in correct order', async () => {
   await setupAndAddProduct('Rimi', 'Product 1', true, shops)
   await setupAndAddProduct('Selver', 'Product 2', false, shops)
 
-  await waitFor(
-    () => {
-      const rows = screen.getAllByTestId(/^row-\d+$/)
-      const rowContents = rows.map((row) => row.textContent)
+  await waitFor(() => {
+    const rows = screen.getAllByTestId(/^row-\d+$/)
+    const rowContents = rows.map((row) => row.textContent)
 
-      expect(rowContents).toEqual([
-        'Product 1RimiDelete',
-        'Product 2SelverDelete'
-      ])
-    },
-    { timeout: 500 }
-  )
+    expect(rowContents).toEqual([
+      'Product 1RimiDelete',
+      'Product 2SelverDelete'
+    ])
+  })
 })
 
 test('Products are deleted when delete btn is pressed', async () => {
