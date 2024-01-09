@@ -44,3 +44,5 @@ pnpm run test:ui
 - Mock of requests
 - Not handling loading and error status while fetching the shops.
 
+Project started with a boilerplate
+
