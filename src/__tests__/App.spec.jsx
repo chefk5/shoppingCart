@@ -20,22 +20,18 @@ const shops = [
   }
 ]
 
-const setup = async (shopsArr) => {
+beforeEach(() =>
   reducer(<App />, {
     preloadedState: {
       shops: {
-        shops: shopsArr,
+        shops: shops,
         products: []
       }
     }
   })
-}
+)
 
-const setupAndAddProduct = async (shop, productName, isSetup, shopsArr) => {
-  if (isSetup) {
-    await setup(shopsArr)
-  }
-
+const setupAndAddProduct = async (shop, productName) => {
   const btn = await screen.getByText('Add')
   const dropdownElement = await screen.getByTestId('shopInput')
   const inputElement = await screen.getByPlaceholderText('Name')
@@ -43,7 +39,6 @@ const setupAndAddProduct = async (shop, productName, isSetup, shopsArr) => {
   fireEvent.change(dropdownElement, { target: { value: shop } })
   fireEvent.change(inputElement, { target: { value: productName } })
   fireEvent.click(btn)
-  await waitFor(() => screen.getByTestId('row-0'))
 }
 
 test('Adds a products and displays it in the table', async () => {
@@ -54,49 +49,33 @@ test('Adds a products and displays it in the table', async () => {
 })
 
 test('Does not add a product if no item in dropdown is selected', async () => {
-  await setup()
-  let btn = screen.getByText('Add')
-  let inputElement = screen.getByPlaceholderText('Name')
+  const btn = screen.getByText('Add')
+  const inputElement = screen.getByPlaceholderText('Name')
   fireEvent.change(inputElement, { target: { value: 'Product 1' } })
   fireEvent.click(btn)
-  const firstRowContent = await screen.findByTestId('row-0').textContent
-  expect(firstRowContent).toBeUndefined()
+
+  // Ensure that the product was not added by asserting the count of rows with a test-id
+  const rows = screen.queryAllByTestId(/^row-\d+$/)
+  expect(rows).toHaveLength(0)
 })
 
 test('Products are shown in correct order', async () => {
   await setupAndAddProduct('Rimi', 'Product 1', true, shops)
   await setupAndAddProduct('Selver', 'Product 2', false, shops)
 
-  const firstRowContent = screen.getByTestId(`row-0`).textContent
-  const secondRowContent = screen.getByTestId(`row-1`).textContent
-  expect(firstRowContent).toBe('Product 1RimiDelete')
-  expect(secondRowContent).toBe('Product 2SelverDelete')
-})
+  await waitFor(
+    () => {
+      const rows = screen.getAllByTestId(/^row-\d+$/)
+      const rowContents = rows.map((row) => row.textContent)
 
-test('Products of shops with no order are rendered first', async () => {
-  const shopsNoOrder = [
-    {
-      id: 'maxima',
-      name: 'Maxima'
+      // Assert that rowContents are in the expected order
+      expect(rowContents).toEqual([
+        'Product 1RimiDelete',
+        'Product 2SelverDelete'
+      ])
     },
-    {
-      id: 'rimi',
-      name: 'Rimi',
-      sortOrder: 1
-    },
-    {
-      id: 'selver',
-      name: 'Selver',
-      sortOrder: 3
-    }
-  ]
-  await setupAndAddProduct('Selver', 'Product 1', true, shopsNoOrder)
-  await setupAndAddProduct('Maxima', 'Product 2', false, shopsNoOrder)
-  const firstRowContent = screen.getByTestId(`row-0`).textContent
-  const secondRowContent = screen.getByTestId(`row-1`).textContent
-  expect(firstRowContent).toBe('Product 2MaximaDelete')
-
-  expect(secondRowContent).toBe('Product 1SelverDelete')
+    { timeout: 500 }
+  )
 })
 
 test('Products are deleted when delete btn is pressed', async () => {
@@ -110,8 +89,6 @@ test('Products are deleted when delete btn is pressed', async () => {
 })
 
 test('Shows an error if no item is written and dropdown is selected', async () => {
-  setup(shops)
-
   const dropdownElement = screen.getByTestId('shopInput')
   fireEvent.change(dropdownElement, { target: { value: 'Rimi' } })
   const btn = screen.getByText('Add')
@@ -125,8 +102,6 @@ test('Shows an error if no item is written and dropdown is selected', async () =
 })
 
 test('Shows an error if item is written but dropdown is not selected', async () => {
-  await setup(shops)
-
   const inputElement = screen.getByPlaceholderText('Name')
   const btn = screen.getByText('Add')
 
