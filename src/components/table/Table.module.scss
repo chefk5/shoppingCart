@@ -4,14 +4,14 @@
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
-  align-items: center; /* Center content vertically */
+  align-items: center; 
 }
 
 .col1 {
-    flex: 1; /* Equal width to the inputs above */
-    padding-left: 60px; /* Adjust padding */
-    white-space: normal; /* Allow text to wrap onto the next line */
-    width: 100%; /* Corrected syntax */
+    flex: 1;
+    padding-left: 60px;
+    white-space: normal; 
+    width: 100%;
   }
 
 .col2{
@@ -37,7 +37,6 @@
   cursor: pointer;
 }
 
-/* Optional: Add styles for button hover, active, etc. */
 .delete-button:hover {
   background-color: darken($red, 10%);
 }
@@ -49,7 +48,7 @@
 
 @media (max-width: 767px) {
     .rowContainer {
-      max-width: none; /* Remove max-width on smaller screens (mobile) */
+      max-width: none; 
     }
   
     .col1,
