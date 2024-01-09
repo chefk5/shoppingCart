@@ -50,18 +50,15 @@ export const shopSlice = createSlice({
       state.status = 'success'
     })
     builder.addCase(fetchShops.rejected, (state, action) => {
-      // Handle the error case if needed
       state.error = action.error.message as string
       state.status = 'error'
     })
     builder.addCase(fetchShops.pending, (state, action) => {
-      // Handle the error case if needed
       state.status = 'loading'
     })
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { addProduct, deleteProduct } = shopSlice.actions
 
 export default shopSlice.reducer

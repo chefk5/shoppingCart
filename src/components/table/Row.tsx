@@ -1,10 +1,14 @@
 import { useAppDispatch } from 'app/hooks'
 import { deleteProduct } from 'app/shopSlice'
-import React from 'react'
-import { Product } from 'types'
 import styles from './Table.module.scss'
 
-const Row = ({ id, name, shop, index }: Product) => {
+type RowProps = {
+  id: string
+  name: string
+  shop: string
+  index: number
+}
+const Row = ({ id, name, shop, index }: RowProps) => {
   const dispatch = useAppDispatch()
   const deleteProductHandler = (id: string) => {
     dispatch(deleteProduct(id))

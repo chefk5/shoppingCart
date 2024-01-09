@@ -54,7 +54,6 @@ test('Does not add a product if no item in dropdown is selected', async () => {
   fireEvent.change(inputElement, { target: { value: 'Product 1' } })
   fireEvent.click(btn)
 
-  // Ensure that the product was not added by asserting the count of rows with a test-id
   const rows = screen.queryAllByTestId(/^row-\d+$/)
   expect(rows).toHaveLength(0)
 })
@@ -68,7 +67,6 @@ test('Products are shown in correct order', async () => {
       const rows = screen.getAllByTestId(/^row-\d+$/)
       const rowContents = rows.map((row) => row.textContent)
 
-      // Assert that rowContents are in the expected order
       expect(rowContents).toEqual([
         'Product 1RimiDelete',
         'Product 2SelverDelete'

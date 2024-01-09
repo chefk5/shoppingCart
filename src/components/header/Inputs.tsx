@@ -42,6 +42,8 @@ const Inputs = ({ shops }: Props) => {
         sortOrder: selectedShopOrder?.sortOrder ?? 1
       }
       dispatch(addProduct(newProduct))
+      setProductName('')
+      setError(null)
     }
   }
 
