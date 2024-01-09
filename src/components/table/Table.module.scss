@@ -1,26 +1,60 @@
 @import "../../styles/variables.scss";
 
-tr{
-
-}
-.table{
-    width: 100%;
-}
-
-.row{
-    display: flex;
+.rowContainer {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-items: center; /* Center content vertically */
 }
 
-.col1{
-    width: 50%;
-}
+.col1 {
+    flex: 1; /* Equal width to the inputs above */
+    padding-left: 60px; /* Adjust padding */
+    white-space: normal; /* Allow text to wrap onto the next line */
+    width: 100%; /* Corrected syntax */
+  }
 
 .col2{
-    width: 30%;
+ flex: 1,
+ 
+}
+.col3 {
+  flex: 4; 
 }
 
-.col3{
-    width: 25%;
-    color:$red;
-    font-weight: 500;
+.col3 {
+  color: $red;
+  font-weight: 500;
 }
+
+.delete-button {
+  width: 100%;
+  padding: 8px;
+  background-color: $red;
+  color: $white1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Optional: Add styles for button hover, active, etc. */
+.delete-button:hover {
+  background-color: darken($red, 10%);
+}
+
+.delete-button:active {
+  background-color: darken($red, 20%);
+}
+
+
+@media (max-width: 767px) {
+    .rowContainer {
+      max-width: none; /* Remove max-width on smaller screens (mobile) */
+    }
+  
+    .col1,
+    .col2,
+    .col3 {
+      flex: 1; /* Take full width on smaller screens */
+    }
+  }

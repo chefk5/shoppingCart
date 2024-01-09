@@ -11,6 +11,8 @@ type Props = {
 const Inputs = ({ shops }: Props) => {
   const [productName, setProductName] = useState('')
   const [selectedShop, setSelectedShop] = useState('')
+  const [error, setError] = useState<string | null>(null)
+
   const dispatch = useAppDispatch()
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value)
@@ -21,6 +23,16 @@ const Inputs = ({ shops }: Props) => {
   }
 
   const handleSubmit = () => {
+    if (!selectedShop) {
+      setError('Please select a shop.')
+      return
+    }
+
+    if (!productName) {
+      setError('Please enter a product name')
+      return
+    }
+
     if (selectedShop && productName) {
       const selectedShopOrder = shops.find((shop) => shop.name === selectedShop)
       const newProduct: Product = {
@@ -62,6 +74,12 @@ const Inputs = ({ shops }: Props) => {
       <button className={styles.enterBtn} onClick={handleSubmit}>
         Add
       </button>
+
+      {error && (
+        <p className={styles.error} data-testid={'error'}>
+          {error}
+        </p>
+      )}
     </div>
   )
 }

@@ -5,18 +5,31 @@ import Inputs from 'components/header/Inputs'
 import Table from 'components/table/Table'
 import { useEffect } from 'react'
 import '../styles/styles.scss'
+
 function App() {
   const { shops, status, products } = useAppSelector((state) => state.shops)
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     dispatch(fetchShops())
   }, [dispatch])
 
   return (
-    <div>
-      <Title />
-      <Inputs shops={shops} />
-      <Table products={products} />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      {status === 'loading' ? (
+        <p>Loading</p>
+      ) : (
+        <>
+          <Title />
+          <Inputs shops={shops} />
+          <Table products={products} />
+        </>
+      )}
     </div>
   )
 }

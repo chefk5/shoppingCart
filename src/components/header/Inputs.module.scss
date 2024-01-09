@@ -2,10 +2,14 @@
 
 .inputsContainer {
     margin-left: 40px;
+    margin-right: 40px;
     margin-bottom: 20px;
     display: flex; /* Add display: flex; to create a flex container */
-    flex-direction: row;
-    align-items: 'center';
+    align-items: center;
+
+    @media (max-width: 600px) { /* Adjust the breakpoint based on your design */
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
 }
 
 .textInput,
@@ -19,17 +23,32 @@ select { /* Apply the styles to both input and select elements */
     background-position: right 15px center; /* Adjust the right padding */
     background-repeat: no-repeat;
     margin-right: 10px;
+
+    @media (max-width: 600px) { /* Adjust the breakpoint based on your design */
+        width: 100%; /* Take the full width on smaller screens */
+        margin-right: 0; /* Remove right margin on smaller screens */
+        margin-bottom: 10px; /* Add bottom margin for spacing on smaller screens */
+    }
 }
 
-.enterBtn{
-display: inline-flex;
-padding: 0px 22px;
-justify-content: center;
-align-items: center; 
-flex-shrink: 0;
-border-radius: 40px;
-background-color: $green;
-font-size: $md-font;
-color: $white1;
-font-weight: 500;
+.enterBtn {
+    display: inline-flex;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 22px;
+    padding-Right: 22px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background-color: $green;
+    font-size: $md-font;
+    color: $white1;
+    font-weight: 500;
+}
+
+.error{
+    color:$red;
+    font-weight: 500;
+    margin-left: 20px;
 }
