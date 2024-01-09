@@ -21,15 +21,11 @@ function App() {
         flexDirection: 'column'
       }}
     >
-      {status === 'loading' ? (
-        <p>Loading</p>
-      ) : (
-        <>
-          <Title />
-          <Inputs shops={shops} />
-          <Table products={products} />
-        </>
-      )}
+      <>
+        <Title />
+        <Inputs shops={shops} />
+        <Table products={products} />
+      </>
     </div>
   )
 }
