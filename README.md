@@ -1,37 +1,9 @@
-![reactjs-vite-tailwindcss-boilerplate](https://user-images.githubusercontent.com/16243531/217138979-b854309c-4742-4275-a705-f9fec5158217.jpg)
 
-# React Tailwindcss Boilerplate build with Vite
+# Shopping cart
 
-This is a boilerplate build with Vite, React 18, TypeScript, Vitest, Testing Library, TailwindCSS 3, Eslint and Prettier.
-
-## What is inside?
-
-This project uses many tools like:
-
-- [Vite](https://vitejs.dev)
-- [ReactJS](https://reactjs.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Vitest](https://vitest.dev)
-- [Testing Library](https://testing-library.com)
-- [Tailwindcss](https://tailwindcss.com)
-- [Eslint](https://eslint.org)
-- [Prettier](https://prettier.io)
+A shopping cart to dd products to different stores.
 
 ## Getting Started
-
-### Install
-
-Create the project.
-
-```bash
-npx degit joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate my-app
-```
-
-Access the project directory.
-
-```bash
-cd my-app
-```
 
 Install dependencies.
 
@@ -43,24 +15,6 @@ Serve with hot reload at <http://localhost:5173>.
 
 ```bash
 pnpm run dev
-```
-
-### Lint
-
-```bash
-pnpm run lint
-```
-
-### Typecheck
-
-```bash
-pnpm run typecheck
-```
-
-### Build
-
-```bash
-pnpm run build
 ```
 
 ### Test
@@ -75,6 +29,18 @@ View and interact with your tests via UI.
 pnpm run test:ui
 ```
 
-## License
+## Features
 
-This project is licensed under the MIT License.
+- Type a product -> Select a product -> press add -> The prudct will be added to cart showing which shop it is for.
+- If no product or shop is slected, an error is shown.
+- Each shop has an order which determines th eorder of products.
+- If a shop does not have an order, its products will shown on the top.
+- Integration tests are added.
+
+## Limitations
+
+- More tests could be added
+- Some UI tweaks might be needed
+- Mock of requests
+- Not handling loading and error status while fetching the shops.
+
